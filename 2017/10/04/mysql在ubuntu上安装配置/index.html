@@ -103,7 +103,7 @@
 <meta property="og:site_name" content="Fennel的视界">
 <meta property="og:description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.安装我们使用命令apt-get install mysql-server mysql-client安装的过程中，会提示你输入密码和确认密码。安装完成后，mysql服务会自动启动。 3.测试是否安装成功在">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-04T15:38:06.225Z">
+<meta property="og:updated_time" content="2017-10-04T15:40:45.727Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql在ubuntu上安装配置">
 <meta name="twitter:description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.安装我们使用命令apt-get install mysql-server mysql-client安装的过程中，会提示你输入密码和确认密码。安装完成后，mysql服务会自动启动。 3.测试是否安装成功在">
@@ -385,7 +385,7 @@
 <h1 id="4-修改配置"><a href="#4-修改配置" class="headerlink" title="4.修改配置"></a>4.修改配置</h1><h3 id="4-1-修改mysql-conf-d"><a href="#4-1-修改mysql-conf-d" class="headerlink" title="4.1 修改mysql.conf.d"></a>4.1 修改mysql.conf.d</h3><p>进入<code>/etc/mysql/mysql.conf.d</code> 找到<code>mysqld.cnf</code>文件，找到<code>bind-address</code>，把<code>127.0.0.1</code> 改为<code>0.0.0.0</code>.<br>如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Instead of skip-networking the default is now to listen only on</div><div class="line"># localhost which is more compatible and is not less secure.</div><div class="line">bind-address        = 0.0.0.0</div></pre></td></tr></table></figure></p>
 <p>修改后，保存。<br>使用<br><code>sudo service mysql restart</code><br>来重启mysql服务。<br>查看mysql端口占用情况<br><code>netstat -nlt|grep 3306</code><br>我们看到从之间的网络监听从 127.0.0.1:3306 变成 0 0.0.0.0:3306，表示MySQL已经允许远程登陆访问。</p>
 <h3 id="4-2-访问权限"><a href="#4-2-访问权限" class="headerlink" title="4.2 访问权限"></a>4.2 访问权限</h3><p>要对服务器上的数据库或表赋予访问权限，这样才能远程访问数据。<br>登录mysql<br><code>mysql -u root -p</code><br>输入密码，即登录成功<br>使用mysql库<br><code>use mysql;</code><br>更新表字段<br><code>update user set host = &#39;%&#39; where user = &#39;root&#39;;</code><br>然后重启mysql服务<br><code>sudo service mysql restart</code><br>通过上面两步修改，就可以远程访问mysql了。</p>
-<h1 id="5-常见问题"><a href="#5-常见问题" class="headerlink" title="5.常见问题"></a>5.常见问题</h1><p>如果遇到下面这个错，可能是mysql没有启动<br><code>ERROR 2002 (HY000): Can&#39;t connect to local MySQL server through socket &#39;/var/run/mysqld/mysqld.sock&#39; (2)</code></p>
+<h1 id="5-常见问题"><a href="#5-常见问题" class="headerlink" title="5.常见问题"></a>5.常见问题</h1><p>如果遇到下面这个错，可能是mysql没有启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR 2002 (HY000): Can&apos;t connect to local MySQL server through socket &apos;/var/run/mysqld/mysqld.sock&apos; (2)</div></pre></td></tr></table></figure></p>
 
       
     </div>
