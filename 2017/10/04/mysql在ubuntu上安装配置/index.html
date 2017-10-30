@@ -95,18 +95,20 @@
 
 
 
-<meta name="description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.创建新用户并加入超级权限组如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。下面的一些列命令将创建一个拥有超级权限的新用户： 创建新用户fenne">
+<meta name="description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.创建新用户并加入超级权限组如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。首先shh连接阿里云 下面的一些列命令将创建一个拥有超级权限的新用户：">
 <meta name="keywords" content="mysql,ubuntu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mysql在ubuntu上安装配置">
 <meta property="og:url" content="https://gongkangjia.github.io/2017/10/04/mysql在ubuntu上安装配置/index.html">
 <meta property="og:site_name" content="Fennel的视界">
-<meta property="og:description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.创建新用户并加入超级权限组如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。下面的一些列命令将创建一个拥有超级权限的新用户： 创建新用户fenne">
+<meta property="og:description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.创建新用户并加入超级权限组如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。首先shh连接阿里云 下面的一些列命令将创建一个拥有超级权限的新用户：">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-05T14:23:53.943Z">
+<meta property="og:image" content="http://ovjygnl6d.bkt.clouddn.com/mysql%E6%AC%A2%E8%BF%8E.png">
+<meta property="og:updated_time" content="2017-10-05T14:34:52.222Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="mysql在ubuntu上安装配置">
-<meta name="twitter:description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.创建新用户并加入超级权限组如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。下面的一些列命令将创建一个拥有超级权限的新用户： 创建新用户fenne">
+<meta name="twitter:description" content="1.前言系统环境为ubuntu 16.04。ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。本文采用的就是apt-get安装 2.创建新用户并加入超级权限组如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。首先shh连接阿里云 下面的一些列命令将创建一个拥有超级权限的新用户：">
+<meta name="twitter:image" content="http://ovjygnl6d.bkt.clouddn.com/mysql%E6%AC%A2%E8%BF%8E.png">
 
 
 
@@ -380,20 +382,22 @@
 
       
         <h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>系统环境为<code>ubuntu 16.04</code>。<br>ubuntu安装mysql，可以通过源码make编译安装，也可以通过apt-get安装。apt-get安装更加简便。<br>本文采用的就是<code>apt-get</code>安装</p>
-<h2 id="2-创建新用户并加入超级权限组"><a href="#2-创建新用户并加入超级权限组" class="headerlink" title="2.创建新用户并加入超级权限组"></a>2.创建新用户并加入超级权限组</h2><p>如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。下面的一些列命令将创建一个拥有超级权限的新用户：</p>
-<p>创建新用户fennel2<br><code>root@aliyun:~# useradd -m -s /bin/bash fennel2</code></p>
+<h2 id="2-创建新用户并加入超级权限组"><a href="#2-创建新用户并加入超级权限组" class="headerlink" title="2.创建新用户并加入超级权限组"></a>2.创建新用户并加入超级权限组</h2><p>如果是一台全新服务器的话，通常我们是以root用户登录的。在root下部署代码不安全，最好是建一个新用户。<br>首先shh连接阿里云<br><img src="http://ovjygnl6d.bkt.clouddn.com/mysql%E6%AC%A2%E8%BF%8E.png" alt="连接成功"></p>
+<p>下面的一些列命令将创建一个拥有超级权限的新用户：<br>创建新用户fennel2<br><code>root@aliyun:~# useradd -m -s /bin/bash fennel2</code></p>
 <p>把新创建的用户加入超级权限组<br><code>root@aliyun:~# usermod -a -G sudo fennel2</code></p>
-<p>为新用户设置密码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">root@aliyun:~# passwd fennel2</div><div class="line">Enter new UNIX password: </div><div class="line">Retype new UNIX password: </div><div class="line">passwd: password updated successfully</div></pre></td></tr></table></figure></p>
+<p>为新用户设置密码<br><code>root@aliyun:~# passwd fennel2</code></p>
 <p>切换到创建的新用户<br><code>root@aliyun:~# su - fennel2</code></p>
 <p>切换成功，@符号前面已经是新用户名而不是 root 了<br><code>fennel2@aliyun:~$</code></p>
-<h2 id="3-系统更新"><a href="#3-系统更新" class="headerlink" title="3.系统更新"></a>3.系统更新</h2><p>新用户创建并切换成功了。如果是新服务器的话，最好先更新一下系统，避免因为版本太旧而给后面安装软件带来麻烦。运行下面的两条命令：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fennel2@aliyun:~$ sudo apt-get update</div><div class="line">fennel2@aliyun:~$ sudo apt-get upgrade</div></pre></td></tr></table></figure></p>
+<h2 id="3-系统更新"><a href="#3-系统更新" class="headerlink" title="3.系统更新"></a>3.系统更新</h2><p>新用户创建并切换成功了。如果是新服务器的话，最好先更新一下系统，避免因为版本太旧而给后面安装软件带来麻烦。运行下面的两条命令：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">fennel2@aliyun:~$ sudo apt-get update</div><div class="line">fennel2@aliyun:~$ sudo apt-get upgrade</div></pre></td></tr></table></figure></p>
 <h2 id="4-安装"><a href="#4-安装" class="headerlink" title="4.安装"></a>4.安装</h2><p>我们使用命令<br><code>apt-get install mysql-server mysql-client</code><br>安装的过程中，会提示你输入密码和确认密码。<br>安装完成后，mysql服务会自动启动。</p>
 <h2 id="5-测试是否安装成功"><a href="#5-测试是否安装成功" class="headerlink" title="5.测试是否安装成功"></a>5.测试是否安装成功</h2><p>在终端输入 <code>mysql -u root -p</code>接下来会提示你输入密码，输入正确密码，即可进入。如下所示。说明安装成功。</p>
-<h2 id="6-修改配置"><a href="#6-修改配置" class="headerlink" title="6.修改配置"></a>6.修改配置</h2><h4 id="6-1-修改mysql-conf-d"><a href="#6-1-修改mysql-conf-d" class="headerlink" title="6.1 修改mysql.conf.d"></a>6.1 修改mysql.conf.d</h4><p>进入<code>/etc/mysql/mysql.conf.d</code> 找到<code>mysqld.cnf</code>文件，找到<code>bind-address</code>，把<code>127.0.0.1</code> 改为<code>0.0.0.0</code>.<br>如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"># Instead of skip-networking the default is now to listen only on</div><div class="line"># localhost which is more compatible and is not less secure.</div><div class="line">bind-address        = 0.0.0.0</div></pre></td></tr></table></figure></p>
+<h2 id="6-修改配置"><a href="#6-修改配置" class="headerlink" title="6.修改配置"></a>6.修改配置</h2><h4 id="6-1-修改mysql-conf-d"><a href="#6-1-修改mysql-conf-d" class="headerlink" title="6.1 修改mysql.conf.d"></a>6.1 修改mysql.conf.d</h4><p>进入<code>/etc/mysql/mysql.conf.d</code> 找到<code>mysqld.cnf</code>文件，找到<code>bind-address</code>，把<code>127.0.0.1</code> 改为<code>0.0.0.0</code>.<br>如下所示：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># Instead of skip-networking the default is now to listen only on</span></div><div class="line"><span class="comment"># localhost which is more compatible and is not less secure.</span></div><div class="line">bind-address        = <span class="number">0.0</span><span class="number">.0</span><span class="number">.0</span></div></pre></td></tr></table></figure></p>
 <p>修改后，保存。<br>重启mysql服务。<br><code>sudo service mysql restart</code></p>
 <p>查看mysql端口占用情况<br><code>netstat -nlt|grep 3306</code></p>
 <p>我们看到从之间的网络监听从 127.0.0.1:3306 变成 0 0.0.0.0:3306，表示MySQL已经允许远程登陆访问。</p>
-<h4 id="6-2-访问权限"><a href="#6-2-访问权限" class="headerlink" title="6.2 访问权限"></a>6.2 访问权限</h4><p>要对服务器上的数据库或表赋予访问权限，这样才能远程访问数据。<br>登录mysql<br><code>mysql -u root -p</code><br>输入密码，即登录成功<br>使用mysql库<br><code>use mysql;</code><br>更新表字段<br><code>update user set host = &#39;%&#39; where user = &#39;root&#39;;</code><br>然后重启mysql服务<br><code>sudo service mysql restart</code><br>通过上面两步修改，就可以远程访问mysql了。</p>
+<h4 id="6-2-访问权限"><a href="#6-2-访问权限" class="headerlink" title="6.2 访问权限"></a>6.2 访问权限</h4><p>要对服务器上的数据库或表赋予访问权限，这样才能远程访问数据。<br>登录mysql<br><code>mysql -u root -p</code><br>输入密码，即登录成功<br>使用mysql库<br><code>use mysql;</code></p>
+<p>更新表字段<br><code>update user set host = &#39;%&#39; where user = &#39;root&#39;;</code></p>
+<p>然后刷新系统权限相关的表<br><code>flush privileges;</code><br>通过上面两步修改，就可以远程访问mysql了。</p>
 <h2 id="7-常见问题"><a href="#7-常见问题" class="headerlink" title="7.常见问题"></a>7.常见问题</h2><p>如果遇到下面这个错，可能是mysql没有启动<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ERROR 2002 (HY000): Can&apos;t connect to local MySQL server through socket &apos;/var/run/mysqld/mysqld.sock&apos; (2)</div></pre></td></tr></table></figure></p>
 <p>仍然无法远程连接，请查看阿里云安全组配置。</p>
 
@@ -437,6 +441,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/30/免费让你的网站支持Https/" rel="prev" title="让你的网站免费支持HTTPS访问">
+                让你的网站免费支持HTTPS访问 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -515,7 +523,7 @@
             
               <a href="/archives">
             
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -526,7 +534,7 @@
             
             <div class="site-state-item site-state-categories">
               <a href="/categories/index.html">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">5</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
@@ -537,7 +545,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
